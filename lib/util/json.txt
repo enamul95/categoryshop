@@ -1,0 +1,30 @@
+[
+    {
+      "cat_id":"517",
+      "category_name":"Pizza",
+      "item" : [
+        {
+         "itemId" : "1",
+         "itemName": "Pizza 1"
+        },
+        {
+         "itemId":"2",
+         "itemName" :"Pizza 2"
+        },
+      ],
+    },
+    {
+    "cat_id":"518",
+      "category_name":"Burger",
+      "item" : [
+        {
+         "itemId" : "1",
+         "itemName": "Burger 1"
+        },
+        {
+         "itemId":"2",
+         "itemName" :"Burger 2"
+        },
+      ],
+    }
+   ]
