@@ -1,29 +1,33 @@
 [
     {
       "cat_id":"517",
-      "category_name":"Pizza",
+      "categoryName":"Pizza",
       "item" : [
         {
          "itemId" : "1",
-         "itemName": "Pizza 1"
+         "name": "Pizza 1",
+         "price": 50
         },
         {
          "itemId":"2",
-         "itemName" :"Pizza 2"
+         "name" :"Pizza 2",
+         "price": 40
         }
       ]
     },
     {
     "cat_id":"518",
-      "category_name":"Burger",
+      "categoryName":"Burger",
       "item" : [
         {
          "itemId" : "1",
-         "itemName": "Burger 1"
+         "name": "Burger 1",
+         "price": 10
         },
         {
          "itemId":"2",
-         "itemName" :"Burger 2"
+         "name" :"Burger 2",
+         "price": 30
         }
       ]
     }
