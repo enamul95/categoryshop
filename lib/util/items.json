@@ -10,8 +10,8 @@
         {
          "itemId":"2",
          "itemName" :"Pizza 2"
-        },
-      ],
+        }
+      ]
     },
     {
     "cat_id":"518",
@@ -24,7 +24,7 @@
         {
          "itemId":"2",
          "itemName" :"Burger 2"
-        },
-      ],
+        }
+      ]
     }
    ]
