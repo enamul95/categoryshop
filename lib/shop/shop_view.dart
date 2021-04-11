@@ -48,6 +48,7 @@ class ShopView extends ShopViewModel {
             onHeight: (val) {
               fillListPositionValues(val);
             },
+            key: null,
           );
       },
     );

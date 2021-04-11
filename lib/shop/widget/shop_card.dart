@@ -7,12 +7,16 @@ class ShopCard extends StatelessWidget {
   final int index;
   final Function(double val) onHeight;
 
-  const ShopCard({Key key, this.model, this.index, this.onHeight})
+  const ShopCard(
+      {Key? key,
+      required this.model,
+      required this.index,
+      required this.onHeight})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      onHeight((context.size.height) /
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      onHeight((context.size!.height) /
           (model.products.length / ShopHelper.GRID_COLUMN_VALUE));
     });
     return Column(

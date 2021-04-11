@@ -1,3 +1,5 @@
+import 'package:categoryshop/repostory/rest_api.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import './shop.dart';
@@ -12,10 +14,13 @@ abstract class ShopViewModel extends State<Shop> {
 
   List<ShopModel> shopList = [];
 
+  List<ProductMoel> itemList = [];
   @override
   void initState() {
     super.initState();
-    shopList = List.generate(
+    WidgetsBinding.instance!
+        .addPostFrameCallback((_) => getResutrantList(context));
+    /*shopList = List.generate(
       10,
       (index) => ShopModel(
         categoryName: "Hello",
@@ -26,15 +31,35 @@ abstract class ShopViewModel extends State<Shop> {
       ),
     );
 
+*/
     scrollController.addListener(() {
-      final index = shopList
-          .indexWhere((element) => element.position >= scrollController.offset);
+      final index = shopList .indexWhere((element) => element.position >= scrollController.offset);
+      
       tabBarNotifier.changeIndex(index);
 
       headerScrollController.animateTo(
           index * (MediaQuery.of(context).size.width * 0.2),
           duration: Duration(seconds: 1),
           curve: Curves.decelerate);
+    }
+    );
+  }
+
+  void getResutrantList(BuildContext context) async {
+    print(" One **********************");
+    final client =
+        RestClient(Dio(BaseOptions(contentType: "application/json")));
+
+    client.getProductItemst("1011", "1005").then((it) {
+      print(" get inside **********************");
+
+      //print(it[0].products[0].productName);
+      this.setState(() {
+        itemList = it;
+      });
+    }).catchError((error, stackTrace) {
+      // non-200 error goes here.
+      print("inner  **********************: $error");
     });
   }
 

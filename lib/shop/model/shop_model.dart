@@ -3,7 +3,7 @@ class ShopModel {
   final List<Product> products;
   double position = 0;
 
-  ShopModel({this.categoryName, this.products});
+  ShopModel({required this.categoryName, required this.products});
 }
 
 class Product {
