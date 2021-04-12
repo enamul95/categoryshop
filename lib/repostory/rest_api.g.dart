@@ -8,16 +8,19 @@ part of 'rest_api.dart';
 
 ProductMoel _$ProductMoelFromJson(Map<String, dynamic> json) {
   return ProductMoel(
+    json['id'] as int,
     json['productCategoryId'] as String,
     json['productCategoryName'] as String,
     (json['products'] as List<dynamic>)
         .map((e) => Items.fromJson(e as Map<String, dynamic>))
         .toList(),
-  );
+  )..position = (json['position'] as num).toDouble();
 }
 
 Map<String, dynamic> _$ProductMoelToJson(ProductMoel instance) =>
     <String, dynamic>{
+      'position': instance.position,
+      'id': instance.id,
       'productCategoryId': instance.productCategoryId,
       'productCategoryName': instance.productCategoryName,
       'products': instance.products,
@@ -28,6 +31,8 @@ Items _$ItemsFromJson(Map<String, dynamic> json) {
     json['productId'] as String,
     json['productName'] as String,
     json['description'] as String,
+    json['fileId'] as String,
+    json['_price'] as int,
   );
 }
 
@@ -35,6 +40,8 @@ Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'productId': instance.productId,
       'productName': instance.productName,
       'description': instance.description,
+      'fileId': instance.fileId,
+      '_price': instance.price,
     };
 
 // **************************************************************************

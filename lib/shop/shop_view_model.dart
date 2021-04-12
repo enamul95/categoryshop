@@ -1,18 +1,13 @@
 import 'package:categoryshop/repostory/rest_api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import './shop.dart';
-import 'model/shop_helper.dart';
-import 'model/shop_model.dart';
 import 'state/tabbar_change.dart';
 
 abstract class ShopViewModel extends State<Shop> {
   ScrollController scrollController = ScrollController();
   int currentCategoryIndex = 0;
   ScrollController headerScrollController = ScrollController();
-
-  List<ShopModel> shopList = [];
 
   List<ProductMoel> itemList = [];
   @override
@@ -33,16 +28,16 @@ abstract class ShopViewModel extends State<Shop> {
 
 */
     scrollController.addListener(() {
-      final index = shopList .indexWhere((element) => element.position >= scrollController.offset);
-      
+      final index = itemList
+          .indexWhere((element) => element.position >= scrollController.offset);
+
       tabBarNotifier.changeIndex(index);
 
       headerScrollController.animateTo(
           index * (MediaQuery.of(context).size.width * 0.2),
           duration: Duration(seconds: 1),
           curve: Curves.decelerate);
-    }
-    );
+    });
   }
 
   void getResutrantList(BuildContext context) async {
@@ -50,7 +45,7 @@ abstract class ShopViewModel extends State<Shop> {
     final client =
         RestClient(Dio(BaseOptions(contentType: "application/json")));
 
-    client.getProductItemst("1011", "1005").then((it) {
+    client.getProductItemst("1014", "1010").then((it) {
       print(" get inside **********************");
 
       //print(it[0].products[0].productName);
@@ -64,7 +59,7 @@ abstract class ShopViewModel extends State<Shop> {
   }
 
   void headerListChangePosition(int index) {
-    scrollController.animateTo(shopList[index].position,
+    scrollController.animateTo(itemList[index].position,
         duration: Duration(seconds: 1), curve: Curves.ease);
   }
 
@@ -73,17 +68,16 @@ abstract class ShopViewModel extends State<Shop> {
   void fillListPositionValues(double val) {
     if (oneItemHeight == 0) {
       oneItemHeight = val;
-      shopList.asMap().forEach((key, value) {
+      itemList.asMap().forEach((key, value) {
         if (key == 0) {
-          shopList[key].position = 0;
+          itemList[key].position = 0;
         } else {
-          shopList[key].position = getShopListPosition(val, key);
+          itemList[key].position = getShopListPosition(val, key);
         }
       });
     }
   }
 
   double getShopListPosition(double val, int index) =>
-      val * (shopList[index].products.length / ShopHelper.GRID_COLUMN_VALUE) +
-      shopList[index - 1].position;
+      val * (itemList[index].products.length) + itemList[index - 1].position;
 }

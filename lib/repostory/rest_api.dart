@@ -6,6 +6,7 @@ import 'package:retrofit/retrofit.dart';
 part 'rest_api.g.dart';
 
 //192.168.0.104
+////localhost
 @RestApi(baseUrl: "http://localhost:8080/")
 abstract class RestClient {
   factory RestClient(Dio dio) = _RestClient;
@@ -18,11 +19,13 @@ abstract class RestClient {
 
 @JsonSerializable()
 class ProductMoel {
+  double position = 0;
+  int id;
   String productCategoryId;
   String productCategoryName;
-  //@JsonKey(name: 'item')
   List<Items> products;
-  ProductMoel(this.productCategoryId, this.productCategoryName, this.products);
+  ProductMoel(
+      this.id, this.productCategoryId, this.productCategoryName, this.products);
 
   factory ProductMoel.fromJson(Map<String, dynamic> json) =>
       _$ProductMoelFromJson(json);
@@ -35,8 +38,13 @@ class Items {
   String productId;
   String productName;
   String description;
+  String fileId;
 
-  Items(this.productId, this.productName, this.description);
+  @JsonKey(name: '_price')
+  int price;
+
+  Items(this.productId, this.productName, this.description, this.fileId,
+      this.price);
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 

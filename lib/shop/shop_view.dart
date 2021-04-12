@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './shop_view_model.dart';
 import 'state/tabbar_change.dart';
 import 'widget/shop_card.dart';
+import 'package:categoryshop/repostory/rest_api.dart';
 
 class ShopView extends ShopViewModel {
   @override
@@ -26,7 +27,7 @@ class ShopView extends ShopViewModel {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(flex: 1, child: buildListViewHeader),
-          Divider(),
+          // Divider(),
           Expanded(flex: 9, child: buildListViewShop),
         ],
       ),
@@ -43,7 +44,7 @@ class ShopView extends ShopViewModel {
           return emptyWidget;
         else
           return ShopCard(
-            model: shopList[index],
+            model: itemList[index],
             index: index,
             onHeight: (val) {
               fillListPositionValues(val);
@@ -54,16 +55,16 @@ class ShopView extends ShopViewModel {
     );
   }
 
-  int get shopListAndSpaceAreaLength => shopList.length + 1;
+  int get shopListAndSpaceAreaLength => itemList.length + 1;
 
-  int get shopListLastIndex => shopList.length;
+  int get shopListLastIndex => itemList.length;
 
   Container get emptyWidget => Container(height: oneItemHeight * 2);
 
   Widget get buildListViewHeader {
     return Consumer<TabBarChange>(
       builder: (context, value, child) => ListView.builder(
-        itemCount: shopList.length,
+        itemCount: itemList.length,
         controller: headerScrollController,
         padding: EdgeInsets.all(10),
         scrollDirection: Axis.horizontal,
@@ -78,7 +79,7 @@ class ShopView extends ShopViewModel {
       child: RaisedButton(
         color: tabBarNotifier.index == index ? Colors.red : Colors.blue,
         onPressed: () => headerListChangePosition(index),
-        child: Text("${shopList[index].categoryName} $index"),
+        child: Text("${itemList[index].productCategoryName}"),
         shape: StadiumBorder(),
       ),
     );

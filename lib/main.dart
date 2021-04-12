@@ -1,6 +1,7 @@
 import 'package:categoryshop/group_listview/group_list.dart';
 import 'package:flutter/material.dart';
 
+import 'group_listview/produtct_item2.dart';
 import 'shop/shop.dart';
 
 void main() {
@@ -106,8 +107,9 @@ class MyApp1 extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      // home: Shop(),
-      home: ProductItems(),
+      home: Shop(),
+      //  home: ProductItems(),
+      // home: ProductItems2(),
     );
   }
 }
