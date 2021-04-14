@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  
   static const List<Color> avatarColors = [
     Color(0xffe57373),
     Color(0xfff06292),

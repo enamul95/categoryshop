@@ -37,6 +37,7 @@ class ShopView extends ShopViewModel {
   ListView get buildListViewShop {
     return ListView.builder(
       controller: scrollController,
+      shrinkWrap: true,
       itemCount: shopListAndSpaceAreaLength,
       itemBuilder: (context, index) {
         print(index);

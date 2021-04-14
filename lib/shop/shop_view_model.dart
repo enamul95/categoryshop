@@ -5,6 +5,7 @@ import './shop.dart';
 import 'state/tabbar_change.dart';
 
 abstract class ShopViewModel extends State<Shop> {
+  
   ScrollController scrollController = ScrollController();
   int currentCategoryIndex = 0;
   ScrollController headerScrollController = ScrollController();
@@ -15,18 +16,7 @@ abstract class ShopViewModel extends State<Shop> {
     super.initState();
     WidgetsBinding.instance!
         .addPostFrameCallback((_) => getResutrantList(context));
-    /*shopList = List.generate(
-      10,
-      (index) => ShopModel(
-        categoryName: "Hello",
-        products: List.generate(
-          6,
-          (index) => Product("Product $index", index * 100),
-        ),
-      ),
-    );
 
-*/
     scrollController.addListener(() {
       final index = itemList
           .indexWhere((element) => element.position >= scrollController.offset);
@@ -54,7 +44,7 @@ abstract class ShopViewModel extends State<Shop> {
       });
     }).catchError((error, stackTrace) {
       // non-200 error goes here.
-      print("inner  **********************: $error");
+      print("resturant Items  **********************: $error");
     });
   }
 
